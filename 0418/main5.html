@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>main title</title>
+  </head>
+  <body>
+
+    1<input type="radio" name="r1" >
+    2<input type="radio" name="r1" >
+    3<input type="radio" name="r1" >
+    4<input type="radio" name="r1" >
+    5<input type="radio" name="r1" >
+    6<input type="radio" name="r1" >
+    7<input type="radio" name="r1" >
+    <input type="button" name="checked" value="체크" id="checkBtn">
+
+  </body>
+  <script>
+
+    document.getElementById("checkBtn").addEventListener('click', function(){
+
+      for(let i=0;i<7;i++){
+      let radioNumber = document.getElementsByName("r1")[i].checked;
+      if(radioNumber==true){
+      alert(i+1);
+        }
+      }
+    });
+  </script>
+</html>
