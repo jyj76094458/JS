@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>main title</title>
+  </head>
+  <body>
+    <input type="text" id="inputText">
+    <input type="button" id="inputBtn" value="버튼">
+    <div id="resultArea">
+
+    </div>
+  </body>
+  <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script>
+
+    // document.getElementById("inputBtn").addEventListener('click',function(){
+    //   alert("vanilla");
+    // });
+    //
+    // $("#inputBtn").click(function(){
+    //   alert('jquery');
+    // });
+
+    // let a = 10;
+    // alert(a);
+    // a = 20;
+    // alert(a);
+
+
+    // document.getElementById("inputBtn").addEventListener('click',function(){
+    //   alert(document.getElementById("inputText").value);
+    //   document.getElementById("inputText").value = "bbb";
+    //   alert(document.getElementById("inputText").value);
+    // document.getElementById("resultArea").innerHTML = "vanilla inner html";
+    // });
+
+    // $("#inputText").focus();
+    //
+    // $("#inputBtn").click(function(){
+    //   alert($("#inputBtn").val());
+    //   $("#inputBtn").val("bbb");
+    //   alert($("#inputBtn").val());
+    // });
+
+    $("#inputText").focus();
+
+    $("#inputBtn").click(function(){
+      // alert($("#inputBtn").val());
+      // $("#inputBtn").val("bbb");
+      // alert($("#inputBtn").val());
+      // $("#resultArea").html("jquery inner html");
+
+      console.log($("#resultArea").html());
+      $("#resultArea").html($("#resultArea").html() + "누적");
+    });
+
+  </script>
+</html>

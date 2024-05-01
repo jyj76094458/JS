@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <input type="text" id="inputText1">
+    <input type="button" value="구매" id="buyBtn">
+  </body>
+  <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script>
+  $("#buyBtn").click(function(){
+    let price1 = $("#inputText1").val();
+    let item1 = [["item1",1000]
+               ,["item2",5000]
+               ,["item3",10000]
+               ,["item4",30000]
+               ,["item5",50000]
+               ,["item6",100000]
+               ,["item7",500000]
+                ];
+
+    console.log(price1);
+
+    let priceItem1=[];
+
+    for(let i=0; i<item1.length;i++){
+      if(price1>=500000){
+        priceItem1 = item1[6];
+      } else if(price1>=100000){
+        priceItem1 = item1[5];
+      }else if(price1>=50000){
+        priceItem1 = item1[4];
+      }else if(price1>=30000){
+        priceItem1 = item1[3];
+      }else if(price1>=10000){
+        priceItem1 = item1[2];
+      }else if(price1>=5000){
+        priceItem1 = item1[1];
+      }else if(price1>=1000){
+        priceItem1 = item1[0];
+      } else {
+        priceItem1 = ["item0","구매불가"];
+      }
+    }
+
+    console.log(priceItem1);
+
+    $.ajax({
+
+      url:`http://localhost/qsplus3?price1=${price1}&name=${priceItem1[0]}&price=${priceItem1[1]}`,
+      data:{},
+      success:function(response){
+        console.log(response);
+        alert(response);
+        }
+
+    });
+  });
+
+  </script>
+
+
+</html>

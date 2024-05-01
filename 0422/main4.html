@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>main title</title>
+  </head>
+  <body>
+    <input type="text" id="inputText">
+    <input type="button" id="inputBtn" value="버튼">
+    <div id="resultArea">
+      original text
+    </div>
+  </body>
+  <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script>
+  $.ajax({
+    url:'http://localhost/qs?a=10&b=20&c=40',
+    data: {},
+    success:function(response){
+      console.log(response);
+    }
+  });
+
+  </script>
+</html>
