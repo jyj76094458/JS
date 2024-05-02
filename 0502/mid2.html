@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>main title</title>
+  </head>
+  <body>
+    <div id="textBoxArea">
+    </div>
+        <input type="button" value="추가" id="plusBtn">
+        <input type="button" value="출력" id="outputBtn">
+    <br>
+    <div id="resultArea">
+    </div>
+  </body>
+  <script>
+
+  let countValue=0;
+
+  let plusBtn = document.getElementById("plusBtn");
+  plusBtn.addEventListener('click', function(){
+  let input = document.createElement("input");
+  input.type = "text";
+  input.id = `value${countValue}`;
+  let br = document.createElement("br");
+
+  // console로 text박스와 br element 확인
+
+  // console.log(input);
+  // console.log(br);
+
+  document.getElementById("textBoxArea").appendChild(input);
+  document.getElementById("textBoxArea").appendChild(br);
+
+  // countValue로 id=value값 확인
+
+  // console.log(countValue);
+
+  countValue++;
+  });
+
+  let outputBtn = document.getElementById("outputBtn");
+  outputBtn.addEventListener('click', function(){
+
+  let numberMultiple = [];
+  let result=1;
+
+  // numberMultiple 배열에 text박스 추가된 값 담기
+
+  for (let i=0; i< countValue; i++){
+    let value = document.getElementById(`value${i}`).value;
+    numberMultiple.push(Number(value));
+    }
+
+  // numberMultiple 배열 값 확인
+
+  // console.log(numberMultiple);
+
+  for(let i=0; i<countValue; i++){
+    result=Number(result)*numberMultiple[i];
+    }
+
+  // console.log(result);
+
+  document.getElementById("resultArea").innerHTML = Number(result);
+  });
+
+  </script>
+</html>

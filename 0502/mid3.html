@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>main title</title>
+  </head>
+  <body>
+        키 : <input type="text" id="height">
+    <br>
+        몸무게 : <input type="text" id="weight">
+    <br>
+    <input type="button" value="비만도" id="heavyBtn">
+    <br>
+    <div id="resultArea">
+    </div>
+  </body>
+  <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script>
+
+  $("#heavyBtn").click(function(){
+    let height = $("#height").val();
+    let weight = $("#weight").val();
+
+// console로 height, weight 보기
+
+    console.log(height);
+    console.log(weight);
+
+      $.ajax({
+        url:'http://localhost/qs?height='+height+'&weight='+weight,
+        data: {},
+        success:function(response){
+          console.log(response);
+          $("#resultArea").html(response);
+        }
+      });
+
+  });
+
+  </script>
+</html>

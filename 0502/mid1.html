@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>main title</title>
+  </head>
+  <body>
+        숫자1 -
+        1<input type="radio" name="r1">
+        2<input type="radio" name="r1">
+        3<input type="radio" name="r1">
+        4<input type="radio" name="r1">
+        5<input type="radio" name="r1">
+        6<input type="radio" name="r1">
+        7<input type="radio" name="r1">
+        8<input type="radio" name="r1">
+        9<input type="radio" name="r1">
+        10<input type="radio" name="r1">
+    <br>
+        숫자2 -
+        1<input type="radio" name="r2">
+        2<input type="radio" name="r2">
+        3<input type="radio" name="r2">
+        4<input type="radio" name="r2">
+        5<input type="radio" name="r2">
+        6<input type="radio" name="r2">
+        7<input type="radio" name="r2">
+        8<input type="radio" name="r2">
+        9<input type="radio" name="r2">
+        10<input type="radio" name="r2">
+    <br>
+        숫자3 -
+        1<input type="radio" name="r3">
+        2<input type="radio" name="r3">
+        3<input type="radio" name="r3">
+        4<input type="radio" name="r3">
+        5<input type="radio" name="r3">
+        6<input type="radio" name="r3">
+        7<input type="radio" name="r3">
+        8<input type="radio" name="r3">
+        9<input type="radio" name="r3">
+        10<input type="radio" name="r3">
+    <br>
+        숫자4 -
+        1<input type="radio" name="r4">
+        2<input type="radio" name="r4">
+        3<input type="radio" name="r4">
+        4<input type="radio" name="r4">
+        5<input type="radio" name="r4">
+        6<input type="radio" name="r4">
+        7<input type="radio" name="r4">
+        8<input type="radio" name="r4">
+        9<input type="radio" name="r4">
+        10<input type="radio" name="r4">
+    <br>
+    <input type="button" value="출력" id="outputBtn">
+    <br>
+  </body>
+  <script>
+
+  let numArray = [];
+
+  let outputBtn = document.getElementById("outputBtn");
+  outputBtn.addEventListener('click', function(){
+    let num1;
+    let radioBtns1 = document.getElementsByName("r1");
+    for(let i=0;i<radioBtns1.length;i++){
+      if(radioBtns1[i].checked){
+        num1 =i+1;
+        numArray[0] = num1;
+      }
+    }
+
+    let num2;
+    let radioBtns2 = document.getElementsByName("r2");
+    for(let i=0;i<radioBtns2.length;i++){
+      if(radioBtns2[i].checked){
+        num2 =i+1;
+        numArray[1] = num2;
+      }
+    }
+
+    let num3;
+    let radioBtns3 = document.getElementsByName("r3");
+    for(let i=0;i<radioBtns3.length;i++){
+      if(radioBtns3[i].checked){
+        num3 =i+1;
+        numArray[2] = num3;
+      }
+    }
+
+    let num4;
+    let radioBtns4 = document.getElementsByName("r4");
+    for(let i=0;i<radioBtns4.length;i++){
+      if(radioBtns4[i].checked){
+        num4 =i+1;
+        numArray[3] = num4;
+      }
+    }
+
+// console.log로 num1, num2, num3, num4의 값이 제대로 들어갔는지 확인
+
+    // console.log(num1);
+    // console.log(num2);
+    // console.log(num3);
+    // console.log(num4);
+    // console.log(numArray[0]);
+    // console.log(numArray[1]);
+    // console.log(numArray[2]);
+    // console.log(numArray[3]);
+
+// 가장 큰 수 내림차순 정렬(큰 수가 제일 앞으로 감, 버블정렬)
+
+    for(let i=0;i<numArray.length-1;i++){
+      for(let j=1;j<numArray.length-i;j++)
+      if(numArray[j]>numArray[j-1]){
+        let tmp = numArray[j];
+        numArray[j]=numArray[j-1];
+        numArray[j-1]=tmp;
+      }
+    }
+
+// console.log로 index0(가장 큰 수), index3(가장 작은 수) 확인
+
+    // console.log(Number(numArray[0]));
+    // console.log(Number(numArray[3]));
+
+// 숫자 4개를 입력 받아 출력 버튼 시 그 중 가장 큰 수^가장 작은 수 의 값 console에 출력
+
+    console.log(Number(numArray[0])**Number(numArray[3]));
+  });
+  </script>
+
+</html>
