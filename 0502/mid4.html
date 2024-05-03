@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>main title</title>
+  </head>
+  <body>
+        국어 : <input type="text" id="kor">
+    <br>
+        영어 : <input type="text" id="eng">
+    <br>
+        수학 : <input type="text" id="math">
+    <br>
+    <input type="button" value="석차" id="rankBtn">
+    <br>
+    <div id="resultArea">
+
+    </div>
+  </body>
+  <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+ <script>
+
+  let subSumArray = [];
+
+  $("#rankBtn").click(function(){
+     let kor = $("#kor").val();
+     let eng = $("#eng").val();
+     let math = $("#math").val();
+
+     let subSum = Number(kor) * 1 + Number(eng) * 2 + Number(math) * 3;
+     subSumArray.push(subSum);
+
+     $.ajax({
+       url: 'http://localhost/qs2',
+       data:  {subSumArray} ,
+       success: function(response){
+         console.log(response);
+         $("#resultArea").append(response);
+       }
+     });
+
+   });
+
+</script>
+</html>
