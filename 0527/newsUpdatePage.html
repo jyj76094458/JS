@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    제목 : <input type="text" name="" value="" id="title"><br>
+    본문 : <textarea name="name" rows="8" cols="20" id="content"></textarea><br>
+    <input type="button" name="" value="수정" id="newsUpdateBtn">
+    <input type="button" name="" value="목록으로" id="goToNewsListPageBtn">
+  </body>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script>
+
+  let no = location.href.split("?")[1];
+  // console.log(no);
+  $.ajax({
+    url:`http://localhost/getSingleNewsInfo?no=${no}`,
+    success:function(response){
+      console.log(response[0].title, response[0].content);
+      $("#title").val(response[0].title);
+      $("#content").val(response[0].content);
+    }
+  });
+
+    $("#newsUpdateBtn").click(function(){
+      if($("#title").val().length>50) {
+        alert("제목 50자 초과");
+        // return;
+      }
+      $.ajax({
+        url:`http://localhost/updateNews`,
+        type:"PUT",
+        data: {
+          title: $("#title").val(),
+          content: $("#content").val(),
+          no: no,
+        },
+        success:function(response){
+          if(response.affectedRows==1){
+            alert("수정 완료");
+            location.href="/";
+          }
+            else {
+              alert("수정 실패");
+            }
+          }
+      });
+    });
+
+    $("#goToNewsListPageBtn").click(function(){
+      location.href="/";
+    });
+
+  </script>
+</html>

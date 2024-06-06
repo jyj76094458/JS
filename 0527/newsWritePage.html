@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    제목 : <input type="text" name="" value="" id="title"><br>
+    본문 : <textarea name="name" rows="8" cols="20" id="content"></textarea><br>
+    <input type="button" name="" value="입력" id="newsWriteBtn">
+    <input type="button" name="" value="목록으로" id="goToNewsListPageBtn">
+  </body>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script>
+    $("#newsWriteBtn").click(function(){
+      if($("#title").val().length>50) {
+        alert("제목 50자 초과");
+        // return;
+      }
+      $.ajax({
+        url:`http://localhost/writeNews`,
+        type:"POST",
+        data: {
+          title: $("#title").val(),
+          content: $("#content").val(),
+        },
+        success:function(response){
+          if(response.affectedRows==1){
+            alert("입력 완료");
+            location.href="/";
+          }
+            else {
+              alert("입력 실패");
+            }
+          }
+      });
+    });
+
+    $("#goToNewsListPageBtn").click(function(){
+      location.href="/";
+    });
+
+  </script>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+   뉴스 목록
+    <div id="newsListArea">
+
+    </div>
+    <input type="button" name="" value="글쓰기" id="goToNewsWritePageBtn">
+  </body>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script>
+  
+      $.ajax({
+        url:`http://localhost/getAllNewsInfo`,
+        success:function(response){
+          console.log(response);
+          for(let i=0;i<response.length;i++) {
+            console.log(i);
+            let singleNews = response[i];
+            $("#newsListArea").append(`<div id="news_no${singleNews.no}">제목 : ${singleNews.title} / 내용 : ${singleNews.content}
+            <input type="button" value="삭제" onclick="deleteNewsFunc(${singleNews.no})">
+            <input type="button" value="수정" onclick="goToNewsUpdatePage(${singleNews.no})"></div>`)
+
+          }
+        }
+      });
+
+      function deleteNewsFunc(no){
+        console.log(no);
+
+        $.ajax({
+          url:`http://localhost/deleteSingleNews`,
+          type:"DELETE",
+          data : {
+            no: no
+          },
+          success:function(response){
+            if(response.affectedRows==1){
+              $(`#news_no${no}`).remove();
+              alert("삭제 완료");
+            }
+            else {
+              alert("삭제 실패");
+            }
+          }
+        });
+      }
+
+      function goToNewsUpdatePage(no){
+        location.href=`/newsUpdatePage?${no}`;
+      }
+
+      $("#goToNewsWritePageBtn").click(function(){
+        location.href="/newsWritePage";
+      });
+
+  </script>
+</html>
