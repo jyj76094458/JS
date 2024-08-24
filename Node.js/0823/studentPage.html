@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <style>
+    td {
+      border: 1px solid #ddd;
+    }
+  </style>
+
+  <body>
+    <table>
+      <tr>
+        <td colspan="4">학생 정보 <br></td>
+      </tr>
+      <tr>
+        <td>이름</td>
+        <td>학번</td>
+        <td>주민등록번호</td>
+        <td>주소</td>
+      </tr>
+      <tr>
+        <tbody id="student-list">
+        </tbody>
+      </tr>
+    </table>
+    <button onclick="window.location.href='studentRegister'">학생 등록</button>
+
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        $.ajax({
+          url:'/studentList',
+          method: 'GET',
+          success: function(data) {
+            console.log(data);
+            var list = $('#student-list');
+            data.forEach(function(student) {
+              list.append(
+                '<tr>'
+                +'<td>' + student.name + '</td>'
+                + '<td>' + student.studentNumber + '</td>'
+                + '<td>' + student.residentRegistrationNumber + '</td>'
+                + '<td>' + student.address + '</td>'
+                + '<td><button onclick="updateStudent(\'' + student.no + '\')">수정</button></td>'
+                + '<td><button onclick="deleteStudent(\'' + student.no + '\')">삭제</button></td>'
+                + '</tr>'
+              );
+            });
+          },
+          error: function(error) {
+            console.log('Error:', error);
+          }
+        });
+      });
+
+      function updateStudent(no) {
+        location.href='/studentUpdate';
+      }
+
+      function deleteStudent(no) {
+        $.ajax({
+          url: '/deleteStudent/' + no,
+          method: 'DELETE',
+          success: function(data) {
+            console.log(data);
+            location.reload();
+          },
+          error: function(error) {
+            console.log('Error:', error);
+          }
+        });
+      }
+    </script>
+</body>
+</html>

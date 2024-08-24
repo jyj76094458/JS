@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <form action="studentUpdate" method="update">
+      학생 수정 <br>
+      이름 : <input type="text" name="name" placeholder="이름 입력"><br>
+      학번 : <input type="text" name="studentNumber" placeholder="학번 입력"><br>
+      주민등록번호 : <input type="text" name="residentRegistrationNumber" placeholder="주민등록번호 입력"><br>
+      주소 : <input type="text" name="address" placeholder="주소 입력"><br>
+      <button type="submit">수정 완료</button>
+    </form>
+      <button onclick="window.location.href='/'">학생 페이지로 돌아가기</button>
+  </body>
+
+  <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      $.ajax({
+        url:'/studentListEach/:no',
+        method: 'GET',
+        success: function(data) {
+          console.log(data);
+        },
+        error: function(error) {
+          console.log('Error:', error);
+        }
+      });
+    });
+  </script>
+
+
+</html>
