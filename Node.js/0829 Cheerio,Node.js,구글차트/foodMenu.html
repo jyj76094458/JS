@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>식단 정보</title>
+  <style>
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      margin: 5px 0;
+    }
+  </style>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+<body>
+  <h1>식단 정보</h1>
+  <ul id="foodMenuList"></ul>
+  <button id="inputButton">입력</button>
+  <div id="chart_div" style="width: 900px; height: 500px;"></div>
+
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $.ajax({
+        url: 'http://localhost/foodMenuList',
+        type: 'GET',
+        success: function(response) {
+          console.log(response);
+          const $foodMenuList = $('#foodMenuList');
+          $foodMenuList.empty();
+          const days = ['월요일', '화요일', '수요일', '목요일', '금요일'];
+          for(let i = 0; i < response.length; i++) {
+            if (response && response.length > 0) {
+              const dayItem = document.createElement('li');
+              dayItem.textContent = days[i];
+              dayItem.className = 'day';
+              $foodMenuList.append(dayItem);
+
+              const items = response[i].split(',');
+              items.forEach(item => {
+                const listItem = document.createElement('li');
+                listItem.textContent = item.trim();
+
+                const selectMenu = document.createElement('select');
+                selectMenu.className = 'option-select';
+
+                const options = ['1', '2', '3', '4', '5'];
+                options.forEach(optionText => {
+                  const option = document.createElement('option');
+                  option.value = optionText;
+                  option.textContent = optionText;
+                  selectMenu.appendChild(option);
+                });
+
+                listItem.appendChild(selectMenu);
+                $foodMenuList.append(listItem);
+              });
+
+              if (i < response.length - 1) {
+                $foodMenuList.append('<br>');
+              }
+            }
+          }
+        },
+        error: function(xhr, status, error) {
+          console.error('Error fetching food menu:', error);
+        }
+      });
+
+
+      // Load Google Charts and draw the chart
+  google.charts.load('current', {packages: ['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+
+  function drawChart() {
+    $('#inputButton').click(function() {
+
+      const selectedValues = [];
+      let dayIndex = -1;
+      let sum = 0;
+      let count = 0;
+
+      $('#foodMenuList').children().each(function() {
+        if (this.tagName === 'BR') {
+          const average = sum / count;
+          selectedValues.push(average);
+          sum = 0;
+          count = 0;
+        } else if ($(this).find('.option-select').length) {
+          const value = parseInt($(this).find('.option-select').val(), 10);
+          sum += value;
+          count++;
+        } else if ($(this).hasClass('day')) {
+          dayIndex++;
+        }
+      });
+
+      // 마지막 요일의 평균 추가
+      if (count > 0) {
+        const average = sum / count;
+        selectedValues.push(average);
+      }
+
+      const dataArray = [['Day', '만족도']];
+      const days = ['월요일', '화요일', '수요일', '목요일', '금요일'];
+      selectedValues.forEach((value, index) => {
+        dataArray.push([days[index], value]);
+      });
+
+      const data =  google.visualization.arrayToDataTable(dataArray);
+
+      const options = {
+        vAxis: { title: 'Popularity' },
+        legend: { position: 'right' },
+        curveType: 'function'
+      };
+
+      const chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+    });
+  }
+    });
+  </script>
+</body>
+</html>
