@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>로또번호 정렬</title>
+  </head>
+  <body>
+  </body>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script>
+
+  /*
+  10 ~ 20 랜덤 숫자만큼
+  arr에 0 ~ 5의 숫자를 넣고
+  arr배열과 arr배열 안의 3의 갯수를 출력
+  */
+
+   let result = [];
+   const min = 10;
+   const max = 20;
+   let randomValue = Math.floor(Math.random() * (max - min + 1) + min);
+   // console.log(randomValue);
+
+   let countValue = 0;
+
+   for (let i=0; i<randomValue; i++) {
+     const min = 0;
+     const max = 5;
+     let forRandomValue = Math.floor(Math.random() * (max - min + 1) + min);
+     // console.log(forRandomValue);
+     if (forRandomValue ===3 ) {
+       countValue++;
+       result.push(forRandomValue);
+     } else {
+       result.push(forRandomValue);
+     }
+   }
+   console.log(result);
+   console.log("배열 안의 3의 갯수 : " + countValue);
+
+   /*
+   로또 숫자 생성
+   1 ~ 45사이의 숫자 6개를 랜덤으로 발생시킨다
+   (중복 허용 불가 : 숫자를 생성시킬 때 마다
+   배열 안에 그 숫자가 있는지 체크 후 있으면 다시 생성)
+   */
+
+   let result2 = [];
+   let min2 = 1;
+   let max2 = 45;
+   let randomValue2;
+
+   for(let i=0; i<6; i++) {
+     randomValue2 = Math.floor(Math.random() * (max2-min2 + 1) + min2);
+     if (result2.includes(randomValue2)) {
+       i--;
+     } else {
+       result2.push(randomValue2);
+     }
+    }
+
+    let n = result2.length;
+    for (let i = 0; i < n - 1; i++) {
+      for (let j = 1; j < n - i; j++) {
+        if (result2[j - 1] > result2[j]) {
+          let temp = result2[j - 1];
+          result2[j - 1] = result2[j];
+          result2[j] = temp;
+        }
+      }
+    }
+
+  console.log(result2);
+
+  </script>
+</html>
