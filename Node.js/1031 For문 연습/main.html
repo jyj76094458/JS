@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>메인페이지</title>
+  </head>
+  <body>
+  </body>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script>
+
+   // 1번
+    const result1 = [];
+
+      for(let i=0; i<10; i++) {
+        let k = [];
+        for(let j=0; j<10; j++) {
+          k.push(i);
+        }
+        result1.push(k);
+    }
+    console.log(result1);
+
+    // 2번
+    const result2 = [];
+
+      for(let i=0; i<10; i++) {
+        let k = [];
+        for(let j=0; j<10; j++) {
+          k.push(j);
+        }
+        result2.push(k);
+      }
+    console.log(result2);
+
+    // 3번
+    const result3 = [];
+
+      for(let i=0; i<10; i++) {
+        let k = [];
+        for(let j=0; j<10; j++) {
+          if(i==j){
+            k.push(1);
+          } else {
+            k.push(0);
+          }
+        }
+        result3.push(k);
+      }
+    console.log(result3);
+
+    // 4번
+    const result4 = [];
+
+      for(let i=0; i<10; i++) {
+        let k = [];
+        for(let j=0; j<10; j++) {
+          if (i + j === 9 ){
+            k.push(1);
+          } else {
+            k.push(0);
+          }
+        }
+        result4.push(k);
+      }
+
+    console.log(result4);
+
+    // 5번
+    const result5 = [];
+
+      for(let i=0; i<10; i++) {
+        let k = [];
+        for(let j=0; j<10; j++) {
+          if(i%2 === 0) {
+            k.push(j % 2 === 0 ? 1: 0);
+          } else {
+            k.push(j % 2 === 0 ? 0 : 1);
+          }
+        }
+      result5.push(k);
+    }
+
+    console.log(result5);
+
+    // 6번
+    const result6 = [];
+
+      for(let i=0; i<10; i++) {
+        let k = [];
+        for(let j=0; j<10; j++) {
+          if(i%2 === 1) {
+            k.push(j % 2 === 0 ? 1: 0);
+          } else {
+            k.push(j % 2 === 0 ? 0 : 1);
+          }
+        }
+        result6.push(k);
+      }
+
+    console.log(result6);
+
+    // 7번
+    const result7 = [];
+
+      for(let i=0; i<10; i++) {
+        let k = [];
+        for(let j=0; j<10; j++) {
+          const min = 0;
+          const max = 9;
+          const randomValue = Math.floor(Math.random() * (max - min + 1));
+          if (randomValue === 7) {
+            k.push("seven");
+          } else {
+            k.push(randomValue);
+          }
+        }
+        result7.push(k);
+      }
+
+    console.log(result7);
+
+  </script>
+</html>
