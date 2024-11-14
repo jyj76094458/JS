@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+  </body>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script>
+
+    let arr = [];
+
+    for(let i=0;i<6;i++) {
+      let num = Math.floor(Math.random()*45)+1;
+      let ifExist = false;
+
+      for(let j=0;j<arr.length;j++) {
+        if(num==arr[j]) {
+          ifExist = true;
+        }
+      }
+
+      if(ifExist) {
+        i--;
+      }
+      else {
+        arr.push(num);
+      }
+    }
+
+    for(let j=arr.length-1;j>0;j--) {
+      for(let i=0;i<j;i++) {
+        if(arr[i] > arr[i+1]) {
+          let temp = arr[i];
+          arr[i] = arr[i+1];
+          arr[i+1] = temp;
+        }
+    }
+  }
+    console.log(arr);
+  </script>
+</html>
