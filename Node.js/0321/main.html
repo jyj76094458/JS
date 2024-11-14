@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <title>제목</title>
+  </head>
+
+  <body>
+    내용
+    <input type="text"><br>
+    <input type="text" id="checkNum">
+    <input type="button" value="검사" id="checkBtn"><br>
+    <input type="text">
+    <input type="button" value="가짜"><br>
+  </body>
+
+  <script>
+
+    console.log(1+1 + "text1" + "text2");
+
+    console.log(document.getElementById("checkNum"));
+    console.log(document.getElementById("checkNum").type);
+    console.log(document.getElementById("checkNum").id);
+    document.getElementById("checkBtn").addEventListener('click', function(){
+      console.log(1);
+      if(document.getElementById("checkNum").value >= 10){
+        console.log("10 이상");
+      }
+      else {
+        console.log("10 미만");
+      }
+    });
+  </script>
+
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>제목</title>
+  </head>
+  <body>
+    <input type="text" id="number1"><br>
+    <input type="text" id="number2"><br>
+    <input type="button" value="판별" id="checkBtn">
+  </body>
+  <script>
+
+    let btn = document.getElementById("checkBtn");
+
+    btn.addEventListener('click', function(){
+      let num1 = document.getElementById("number1").value;
+      let num2 = document.getElementById("number2").value;
+      let sumNum = Number(num1) + Number(num2);
+      // console.log(sunNum);
+      if(sumNum >= 10){
+        console.log("10 이상");
+      }
+      else {
+        console.log("10 미만");
+      }
+    });
+  </script>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <input type="text" id="checkNum1"><br>
+    <input type="text" id="checkNum2">
+    <input type="button" value="두 숫자의 합 출력" id="checkBtn"><br>
+  </body>
+  <script>
+
+    document.getElementById("checkBtn").addEventListener('click', function(){
+      console.log(document.getElementById("checkNum1").value);
+      console.log(document.getElementById("checkNum2").value);
+      let checkNum1 = parseInt(document.getElementById("checkNum1").value);
+      let checkNum2 = parseInt(document.getElementById("checkNum2").value);
+      let checkNumSum = checkNum1 + checkNum2;
+      if(checkNumSum >= 10){
+        console.log("10 이상");
+      }
+      else {
+        console.log("10 미만");
+      }
+    });
+  </script>
+</html>
